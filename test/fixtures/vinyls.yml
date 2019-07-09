@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist: MyString
+  genre: MyString
+  name: MyString
+  year: 2019-07-09
+  price: 1.5
+  description: MyText
+  seller: one
+
+two:
+  artist: MyString
+  genre: MyString
+  name: MyString
+  year: 2019-07-09
+  price: 1.5
+  description: MyText
+  seller: two
