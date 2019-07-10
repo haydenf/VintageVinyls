@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_09_064025) do
+ActiveRecord::Schema.define(version: 2019_07_10_080328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,27 @@ ActiveRecord::Schema.define(version: 2019_07_09_064025) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "add_buyer_reference_to_vinyls", force: :cascade do |t|
+    t.bigint "vinyl_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["vinyl_id"], name: "index_add_buyer_reference_to_vinyls_on_vinyl_id"
+  end
+
   create_table "buyers", force: :cascade do |t|
     t.bigint "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_buyers_on_profile_id"
+  end
+
+  create_table "buyers_sellers", force: :cascade do |t|
+    t.bigint "buyer_id"
+    t.bigint "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_buyers_sellers_on_buyer_id"
+    t.index ["seller_id"], name: "index_buyers_sellers_on_seller_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -88,7 +104,10 @@ ActiveRecord::Schema.define(version: 2019_07_09_064025) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "add_buyer_reference_to_vinyls", "vinyls"
   add_foreign_key "buyers", "profiles"
+  add_foreign_key "buyers_sellers", "buyers"
+  add_foreign_key "buyers_sellers", "sellers"
   add_foreign_key "profiles", "users"
   add_foreign_key "sellers", "profiles"
   add_foreign_key "vinyls", "sellers"
