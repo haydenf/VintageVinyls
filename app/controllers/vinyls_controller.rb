@@ -14,8 +14,17 @@ class VinylsController < ApplicationController
 
   # GET /vinyls/new
   def new
-    @vinyl = Vinyl.new
+    if current_user
+      if current_user.profile
+        @vinyl = Vinyl.new
+      else 
+        redirect_to new_profile_path
+      end
+    else
+      redirect_to new_user_session_path 
+  
   end
+end
 
   # GET /vinyls/1/edit
   def edit
@@ -26,6 +35,11 @@ class VinylsController < ApplicationController
   def create
     @vinyl = Vinyl.new(vinyl_params)
 
+      @seller = Seller.new
+      @seller.profile_id = current_user.profile.id
+      @seller.save
+
+    # @car.seller_id = current_user.profile.seller.id
     respond_to do |format|
       if @vinyl.save
         format.html { redirect_to @vinyl, notice: 'Vinyl was successfully created.' }
@@ -40,6 +54,9 @@ class VinylsController < ApplicationController
   # PATCH/PUT /vinyls/1
   # PATCH/PUT /vinyls/1.json
   def update
+    if @vinyl.pictures
+        @vinyl.pictures.purge
+    end
     respond_to do |format|
       if @vinyl.update(vinyl_params)
         format.html { redirect_to @vinyl, notice: 'Vinyl was successfully updated.' }
@@ -72,3 +89,4 @@ class VinylsController < ApplicationController
       params.require(:vinyl).permit(:artist, :genre, :name, :year, :price, :description, :seller_id)
     end
 end
+

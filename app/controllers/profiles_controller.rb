@@ -15,6 +15,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
+    @user_type = params[:user_type]
   end
 
   # GET /profiles/1/edit
@@ -26,13 +27,23 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
 
+    @profile.user_id = current_user.id
     respond_to do |format|
-      if @profile.save
+     if @profile.save
+        if params [:profile][:user_type] == "buyer"
+          @buyer = Buyer.new
+          @buyer.profile_id = current_user.profile.id
+          @buyer.save
+
+    
+      
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
+     
       else
         format.html { render :new }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
+      end
       end
     end
   end
@@ -69,6 +80,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :address, :phone_number, :age)
+      params.require(:profile).permit(:first_name, :last_name, :address, :phone_number, :age, :user_id)
     end
 end
