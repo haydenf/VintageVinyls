@@ -14,7 +14,7 @@ class VinylsController < ApplicationController
 
   # GET /vinyls/new
   def new
-    if current_user
+    if user_signed_in?
       if current_user.profile
         @vinyl = Vinyl.new
       else 
