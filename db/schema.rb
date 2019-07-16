@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_080328) do
+ActiveRecord::Schema.define(version: 2019_07_16_085743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,9 @@ ActiveRecord::Schema.define(version: 2019_07_10_080328) do
     t.bigint "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "vinyl_id"
     t.index ["profile_id"], name: "index_buyers_on_profile_id"
+    t.index ["vinyl_id"], name: "index_buyers_on_vinyl_id"
   end
 
   create_table "buyers_sellers", force: :cascade do |t|
@@ -106,6 +108,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_080328) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "add_buyer_reference_to_vinyls", "vinyls"
   add_foreign_key "buyers", "profiles"
+  add_foreign_key "buyers", "vinyls"
   add_foreign_key "buyers_sellers", "buyers"
   add_foreign_key "buyers_sellers", "sellers"
   add_foreign_key "profiles", "users"
