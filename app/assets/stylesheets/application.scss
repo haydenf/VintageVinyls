@@ -14,3 +14,27 @@
  *= require_self
  */
  @import "bootstrap";
+
+ .navbar {
+     background:#DADCCD;
+ }
+
+ .btn-primary {
+     background-color: #A04543;
+     border-color: #A04543;
+     }
+  * {
+    font-family: 'Pontano Sans', sans-serif;
+    color: #A04543;
+}
+  h1 {
+    font-family: 'DM Serif Text', serif;
+
+  }
+ body {
+    background-color: #DADCCD;
+ }
+ .card-body{
+    background:#2C2F3A;
+}
+
