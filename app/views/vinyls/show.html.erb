@@ -1,4 +1,16 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-8">
+    <%# container for images %>
+    <div class="row">
+      <% @vinyl.pictures.each do |picture|%>
+        <div class="col-md-6">
+          <%= image_tag picture, class: "d-block w-100"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4">
 
 <p>
   <strong>Artist:</strong>
@@ -21,7 +33,7 @@
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Price: $</strong>
   <%= @vinyl.price %>
 </p>
 
@@ -30,19 +42,26 @@
   <%= @vinyl.description %>
 </p>
 
-<p>
+<%
+=begin%>
+ <p>
   <strong>Seller:</strong>
   <%= @vinyl.seller %>
-</p>
+</p> 
+<%
+=end%>
+
+  </div>
+</div>
+
+
+<% if (current_user && current_user.profile && (current_user.profile.id == @vinyl.seller.profile_id))%>
 
 <%= link_to 'Edit', edit_vinyl_path(@vinyl) %> 
   <% else %>
     <% if @vinyl.buyer %>
       <button  class="btn btn-danger"> Sold </button>
-      <%# Add review button %>
-      <%= link_to 'Review the seller', profile_path(@vinyl.seller.profile_id), class: "btn btn-warning"%>
-<% else %>
-<%# show the buy option %>
+  <% else %>
   <% if current_user && current_user.profile  && current_user.profile.buyer%>
     <%= link_to 'buy', buyer_page_path(vinyl_id: @vinyl.id, seller_id: @vinyl.seller_id), class: "btn btn-primary"%>
     <% end %>

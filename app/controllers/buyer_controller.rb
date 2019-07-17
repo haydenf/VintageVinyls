@@ -5,19 +5,19 @@ class BuyerController < ApplicationController
       end
     
       def payment
+
+        
         @buyer = Buyer.find_by(profile_id: current_user.profile.id)
         @vinyl = Vinyl.find(params[:vinyl_id])
         @buyer.vinyl << @vinyl
         @seller = @vinyl.seller
         @buyer.sellers << @seller
        
-        @seller = @vinyl.seller
+     
        
-        @buyer.seller << @seller
-    
         redirect_to @vinyl, notice: "payment successful"
       end
     end
     
 
-end
+
