@@ -5,6 +5,8 @@ class VinylsController < ApplicationController
   # GET /vinyls.json
   def index
     @vinyls = Vinyl.all
+    puts "---------index-------"
+    puts @vinyls
   end
 
   # GET /vinyls/1
@@ -14,7 +16,7 @@ class VinylsController < ApplicationController
 
   # GET /vinyls/new
   def new
-    if user_signed_in?
+    if current_user
       if current_user.profile
         @vinyl = Vinyl.new
       else 
@@ -22,7 +24,6 @@ class VinylsController < ApplicationController
       end
     else
       redirect_to new_user_session_path 
-  
   end
 end
 
@@ -39,7 +40,8 @@ end
       @seller.profile_id = current_user.profile.id
       @seller.save
 
-    # @car.seller_id = current_user.profile.seller.id
+      @vinyl.seller_id = current_user.profile.seller.id
+
     respond_to do |format|
       if @vinyl.save
         format.html { redirect_to @vinyl, notice: 'Vinyl was successfully created.' }
@@ -86,7 +88,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vinyl_params
-      params.require(:vinyl).permit(:artist, :genre, :name, :year, :price, :description, :seller_id)
+      params.require(:vinyl).permit(:artist, :genre, :name, :year, :price, :description, pictures: [])
     end
 end
 

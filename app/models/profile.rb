@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-    validates :first_name, :last_name, :phone_number, :user_name, presence: true
+    # validates :first_name, :last_name, :phone_number, :user_name, presence: true
   
 
     belongs_to :user

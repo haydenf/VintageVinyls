@@ -7,9 +7,10 @@
     <%= f.input :artist %>
     <%= f.input :genre %>
     <%= f.input :name %>
-    <%= f.input :year %>
+    <%= f.date_field :year %>
     <%= f.input :price %>
     <%= f.input :description %>
+    <%= f.file_field :pictures, multiple: true %>
   </div>
 
   <div class="form-actions">
