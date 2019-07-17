@@ -9,7 +9,7 @@ _____________
 ##### Amazon S3
 ##### Stripe
 
-# To do
+# To do:
 __________
 ##### Sold button
 ##### Seperate vinyls into genres/years/artists
