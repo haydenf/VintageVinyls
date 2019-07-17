@@ -35,5 +35,17 @@
   <%= @vinyl.seller %>
 </p>
 
-<%= link_to 'Edit', edit_vinyl_path(@vinyl) %> |
+<%= link_to 'Edit', edit_vinyl_path(@vinyl) %> 
+  <% else %>
+    <% if @vinyl.buyer %>
+      <button  class="btn btn-danger"> Sold </button>
+      <%# Add review button %>
+      <%= link_to 'Review the seller', profile_path(@vinyl.seller.profile_id), class: "btn btn-warning"%>
+<% else %>
+<%# show the buy option %>
+  <% if current_user && current_user.profile  && current_user.profile.buyer%>
+    <%= link_to 'buy', buyer_page_path(vinyl_id: @vinyl.id, seller_id: @vinyl.seller_id), class: "btn btn-primary"%>
+    <% end %>
+  <% end %>
+<% end %>
 <%= link_to 'Back', vinyls_path %>
