@@ -1,24 +1,17 @@
-# README
+# Vintage Vinyls
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Expected: 
+_____________
+##### Sign up 
+##### Sign in
+##### List Products
+##### Buy products
+##### Amazon S3
+##### Stripe
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# To do
+__________
+##### Sold button
+##### Seperate vinyls into genres/years/artists
+##### Search 
+##### Better styling
