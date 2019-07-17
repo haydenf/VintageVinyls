@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_16_235446) do
+ActiveRecord::Schema.define(version: 2019_07_17_045824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(version: 2019_07_16_235446) do
     t.bigint "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "buyer_id"
+    t.index ["buyer_id"], name: "index_vinyls_on_buyer_id"
     t.index ["seller_id"], name: "index_vinyls_on_seller_id"
   end
 
@@ -114,5 +116,6 @@ ActiveRecord::Schema.define(version: 2019_07_16_235446) do
   add_foreign_key "buyers_sellers", "sellers"
   add_foreign_key "profiles", "users"
   add_foreign_key "sellers", "profiles"
+  add_foreign_key "vinyls", "buyers"
   add_foreign_key "vinyls", "sellers"
 end

@@ -9,9 +9,9 @@ class BuyerController < ApplicationController
         
         @buyer = Buyer.find_by(profile_id: current_user.profile.id)
         @vinyl = Vinyl.find(params[:vinyl_id])
-        @buyer.vinyl << @vinyl
+        @buyer.vinyl_ids << @vinyl
         @seller = @vinyl.seller
-        @buyer.sellers << @seller
+        @buyer.seller_ids << @seller
        
      
        
