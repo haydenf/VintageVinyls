@@ -1,5 +1,7 @@
 # Vintage Vinyls
 
+Market place to sell and buy vinyl records
+
 # Expected: 
 _____________
 ##### Sign up 
