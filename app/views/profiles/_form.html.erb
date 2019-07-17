@@ -9,6 +9,12 @@
     <%= f.input :address %>
     <%= f.input :phone_number %>
     <%= f.input :age %>
+    <%
+=begin%>
+ <%= f.input :user_name%> 
+<%
+=end%>
+    <%= f.hidden_field :user_type, value: @user_type %>
   </div>
 
   <div class="form-actions">

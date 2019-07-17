@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  def page
-    @vinyl = Vinyl.all
+  def index
+    @vinyls = Vinyl.all
   end
 end

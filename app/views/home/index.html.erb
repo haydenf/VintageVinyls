@@ -1,12 +1,29 @@
+<div class="d-flex justify-content-center">
+    <form class="form-inline my-2 my-lg-0">
+          </form>
+</div>
 <h1> Vintage Vinyls </h1>
+
 <div class="row mt-5">
 
-    <div class="col-md-4 mt-5">
-        <div class="card" >
-      
-            <div class="card-body">  
+    <% @vinyls.each do |vinyl| %>
+      <div class="col-md-4 mt-5">
+
+        <div class="card">
+            <% if vinyl.pictures.first %>
+            <%= image_tag vinyl.pictures.first, class: "card-img-top" %>
+            <% end %>
+            <div class="card-body">
+              <p class="card-text">
+                <%= vinyl.artist%> <%= vinyl.genre%>
+                </p>
+                <p>
+                $<%= vinyl.price%>
+                </p>
+                <%= link_to 'Explore', vinyl_path(vinyl.id), class: "btn btn-primary"%>  
               
             </div>
         </div>
     </div>
+    <%end %>
     </div>
